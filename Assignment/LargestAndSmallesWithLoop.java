@@ -6,9 +6,13 @@ public static void main(String... args) {
 
 Scanner input = new Scanner(System.in);
 
-int number = 0;
-int largest = 0;
-int smallest = 0;
+int count = 0;
+System.out.println("Enter a number:  ")
+int number = input.nextInt();
+
+int largest = number;
+
+int smallest = number;
 
 while (number != -1) {
 

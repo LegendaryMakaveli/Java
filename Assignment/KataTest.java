@@ -8,10 +8,10 @@ Scanner input = new Scanner(System.in);
 
 Kata ikka = new Kata ();
 
-//System.out.println("Enter an integer to know if it's even or odd");
-//int number = input.nextInt();
+System.out.println("Enter an integer to know if it's even or odd"); 
+int number = input.nextInt();
 
-	//ikka.isEven(number);
+	ikka.isEven(number);
 
 
 //System.out.println("Enter an integer to ckeck if it's a prime number");
