@@ -69,5 +69,9 @@ userInput = input.nextInt();
 	}
 }
 }
+int sum = totalPass++;
+int sum2 = totalFail++;
+System.out.println("The total number of Pass is: " + sum);
+System.out.println("The total number of Fail is: " + sum2);
 }
 }
