@@ -26,7 +26,7 @@ for (int counter = 0; counter < array.length; counter++) {
 }
 
 for (int count = 0; count < array.length; count++) {
-	if (array[count] == largest && array[count] == secondLargest) {
+	if (array[count] == largest || array[count] == secondLargest) {
 		continue;
 	} else if (array[count] < secondLargest) {
 		smallest = array[count];
