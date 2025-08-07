@@ -4,7 +4,7 @@ public class VowelCount {
 
 public static void main(String... makaveli) {
 
-int [] array = {78,5,3,6,8,2,7,4,};
+int [] array = {78,5,3,6,8,2,7,4};
 
 int largest = 0;
 int secondLargest = 0;
