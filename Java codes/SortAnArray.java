@@ -18,7 +18,7 @@ return new int [] {smallestIndex};
 public static int [] sortTheArray(int [] numbers) {
 int [] newArray = {numbers.length};
 for (int count = 0; count < numbers.length; count++) {
-	int [] smallest = findTheSmallestNumberIndex(numbers);
+	int smallest = findTheSmallestNumberIndex(numbers);
 	newArray.add(numbers.remove(smallest));
 }
 return newArray;
