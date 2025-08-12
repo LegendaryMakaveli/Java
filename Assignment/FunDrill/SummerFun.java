@@ -291,13 +291,60 @@ if (userInput >= 90) {
 }
 
  
+public static int [] nestedEvenChecker(int [] number) {
+
+int [] newArray = new int [number.length];
+int [] overAll = new int [number.length];
+
+for (int count = 0; count < number.lenght; count++) {
+	newArray = number[count];
+	if (newArray % 2 == 0) {
+		overall = newArray;
+
+	}
+}
+return overAll;
+}
 
 
+public static void PasswordRetry() {
+Scanner input = new Scanner(System.in);
+String CORRECT = "python";
+
+for (int count = 1; count < 4; count++) {
+System.out.print("Enter correct password:  ");
+String userInput = input.nextLine();
+
+if (userInput == CORRECT) {
+	System.out.println("Success!")
+}else {
+		System.out.println("Try Again!");
+	}
+if (count == 3) {
+		System.out.println("Locked Out");
+	}
+}
+}
+
+public static int starTriangle(int number) {
+for (count = 1; count <= number; count++) {
+for (counter = count; counter <= number; counter++) {
+	System.out.println("*");
+	}
+	System.out.println(" ");
+	}
+
+}
+
+public static int divisibleByThreeAndFive(int number) {
+for (int count = 1; count <= number; count++) {
+	if (count % 3 == 0 && count % 5 == 0) {
+		System.out.println(count);
+	}
+}
 
 
-
-
-
+}
 
 
 
