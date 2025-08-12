@@ -291,20 +291,20 @@ if (userInput >= 90) {
 }
 
  
-public static int [] nestedEvenChecker(int [] number) {
+//public static int [] nestedEvenChecker(int [] number) {
 
-int [] newArray = new int [number.length];
-int [] overAll = new int [number.length];
+//int newArray = 0;
+//int [] overAll = new int [number.length];
 
-for (int count = 0; count < number.lenght; count++) {
-	newArray = number[count];
-	if (newArray % 2 == 0) {
-		overall = newArray;
+//for (int count = 0; count < number.length; count++) {
+	//newArray = number[count];
+	//if (newArray % 2 == 0) {
+		//overAll = newArray;
 
-	}
-}
-return overAll;
-}
+	//}
+//}
+//return overAll;
+//}
 
 
 public static void PasswordRetry() {
@@ -316,7 +316,7 @@ System.out.print("Enter correct password:  ");
 String userInput = input.nextLine();
 
 if (userInput == CORRECT) {
-	System.out.println("Success!")
+	System.out.println("Success!");
 }else {
 		System.out.println("Try Again!");
 	}
@@ -326,9 +326,9 @@ if (count == 3) {
 }
 }
 
-public static int starTriangle(int number) {
-for (count = 1; count <= number; count++) {
-for (counter = count; counter <= number; counter++) {
+public static void starTriangle() {
+for (int count = 1; count <= 5; count++) {
+for (int counter = count; counter <= 5; counter++) {
 	System.out.println("*");
 	}
 	System.out.println(" ");
@@ -336,18 +336,138 @@ for (counter = count; counter <= number; counter++) {
 
 }
 
-public static int divisibleByThreeAndFive(int number) {
-for (int count = 1; count <= number; count++) {
+public static void divisibleByThreeAndFive() {
+for (int count = 1; count <= 20; count++) {
 	if (count % 3 == 0 && count % 5 == 0) {
 		System.out.println(count);
 	}
 }
+}
 
+public static void simpleCalculator() {
+	Scanner input = new Scanner(System.in);
+	System.out.print("Enter the first number:  ");
+	int firstNumber = input.nextInt();
+	
+	System.out.print("Enter preferred operator(+ OR -):  ");
+	String operator = input.next();
+
+	System.out.print("Enter the secondNumebr:  ");
+	int secondNumber = input.nextInt();
+
+
+	if (operator.equals("+")) {
+		int total = firstNumber + secondNumber;
+	System.out.print(firstNumber + "+" + secondNumber + "=" + total);
+	} else if (operator.equals("-")) {
+		int total = firstNumber - secondNumber;
+	System.out.print(firstNumber + "-" + secondNumber + "=" + total);
+	}
+}
+
+public static void vowelCount() {
+Scanner input = new Scanner (System.in);
+System.out.print("Enter a word:   ");
+String word = input.next().toLowerCase();
+
+int vowelCount = 0;
+
+for (int count = 0; count < word.length(); count++) {
+char letter = word.charAt(count);
+if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u') {
+		vowelCount++;
+	}
+}
+System.out.print(vowelCount);
+}
+
+public static void checkAgeAndHeight() {
+Scanner input = new Scanner (System.in);
+System.out.print("What's your age:  ");
+int age = input.nextInt();
+
+System.out.print("Enter your height in centimeters:  ");
+int height = input.nextInt();
+
+if (age >= 12 && height >= 140) {
+	System.out.print("Ride Allowed!");
+} else if (age >= 12 && height < 140){
+	System.out.print("Too short!");
+} else if (age < 12 && height >=140) {
+	System.out.print("Too young!");
+} else {
+	System.out.print("Wetin you dey find self!");
+}
+
+}
+
+public static int sumOfEven(int number) {
+
+int sumEven = 0;
+
+for (int count = 0; count <= number; count++) {
+		if (count % 2 == 0) {
+	System.out.print(count + " ");
+			sumEven += count;
+		}
+	}
+	return sumEven;
+}
+
+public static void guessWithHint() {
+
+Scanner input = new Scanner(System.in);
+int answer;
+do {
+	System.out.println("Guess a number:  ");
+	answer = input.nextInt();
+
+	if (answer > 25) {
+		System.out.println("Too high");
+	} else if (answer < 25) {
+		System.out.println("Too low");
+	} else {
+		System.out.println("Correct!");
+	}
+} while (answer != 25);
+}
+
+public static void numberPattern() {
+  for(int count = 1; count <= 3; count++) {
+	for (int counter = 1; counter <= count; counter++) {
+		System.out.print(counter + " ");
+	}
+		System.out.println();
+	}
 
 }
 
 
+public static void simpleQuiz() {
+Scanner input = new Scanner(System.in);
+String CORRECT = "paris";
 
+for (int count = 1; count < 4; count++) {
+System.out.print("What is the capital of france!:  ");
+String userInput = input.nextLine();
+
+if (userInput.equalsIgnoreCase(CORRECT)) {
+	System.out.println("Correct!");
+	break;
+}else {
+		System.out.println("Try Again!");
+	}
+}
+}
+
+public static void ReverseCount() {
+for (int count = 20; count >= 1; count--) {
+	System.out.println(count);
+	if (count  == 16) {
+	System.out.print("Halfway!");
+	}
+}
+}
 
 
 
@@ -357,7 +477,13 @@ for (int count = 1; count <= number; count++) {
 
 
 public static void main(String... makaveli) {
-	 gradeCalculator();
+	//ReverseCount();
+	//guessWithHint();
+	//checkAgeAndHeight();
+	//simpleQuiz();
+	//vowelCount();
+	//simpleCalculator();
+	 //gradeCalculator();
 	//multiplicationTable();
 	//guessNumber();
 	//countingUp();
@@ -375,10 +501,11 @@ public static void main(String... makaveli) {
 	//positiveOrNegative();
 	//loopingStars();
 	//ageRestriction();
-	//System.out.print(countByTwo(10));
+	//System.out.println(sumOfEven(20));
 	//guessTheAnimak();
 	//countByTwo();
 	//temperatureCheck();
 	 //printYourName();
+	//numberPattern();
 }
 }
