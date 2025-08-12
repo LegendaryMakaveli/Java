@@ -469,6 +469,85 @@ for (int count = 20; count >= 1; count--) {
 }
 }
 
+public static int sumOfMultiple(int number) {
+int sum = 0;
+for (int count = 1; count <= number; count++) {
+	if (count % 3 == 0 && count % 5 == 0) {
+		sum +=count;
+}
+}
+return sum;
+}
+
+public static void colorGame() {
+Scanner input = new Scanner(System.in);
+
+for (int count = 1; count <=3; count++) {
+System.out.println("Take a guess:  ");
+String userInput = input.next();
+
+if (userInput == "blue") {
+		System.out.println("Correct!");
+		break;
+} else if (userInput == "green") {
+		System.out.println("Close");
+} else {
+		System.out.println("Wrong");
+}
+
+}
+}
+
+
+public static void checkTemperature() {
+	Scanner input = new Scanner(System.in);
+	int convert = 0;
+	int temporaryTemperature = -273;
+	System.out.print("Enter today temperature:  ");
+	int temp = input.nextInt();
+
+
+	if (temp == temporaryTemperature) {
+		convert = (temp * 9) / 5 + 32;
+	} else {
+		System.out.println("Cool");
+	}
+	System.out.print(convert);
+}
+
+public static int gradeAverage(int number) {
+Scanner input = new Scanner(System.in);
+int total = 0;
+int average = 0;
+
+for (int count = 1; count <= 5; count++) {
+System.out.print("Enter student score:  ");
+int score = input.nextInt();
+if (score >= 0 && score <= 100)
+	total +=score;
+}
+average = total / 5;
+return average;
+}
+
+public static void nestedGrid() {
+for (int count = 1; count <= 5; count++) {
+	for (int counter = 1; counter <= 3; counter++) {
+		System.out.print(counter + " ");
+}
+	System.out.println(count);
+
+}
+
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -477,6 +556,9 @@ for (int count = 20; count >= 1; count--) {
 
 
 public static void main(String... makaveli) {
+	//nestedGrid();
+	//checkTemperature();
+	//colorGame();
 	//ReverseCount();
 	//guessWithHint();
 	//checkAgeAndHeight();
@@ -501,7 +583,7 @@ public static void main(String... makaveli) {
 	//positiveOrNegative();
 	//loopingStars();
 	//ageRestriction();
-	//System.out.println(sumOfEven(20));
+	//System.out.println(gradeAverage(7));
 	//guessTheAnimak();
 	//countByTwo();
 	//temperatureCheck();
