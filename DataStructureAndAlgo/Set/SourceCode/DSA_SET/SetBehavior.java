@@ -17,12 +17,14 @@ public class SetBehavior {
                 return;
             }
         }
+        adjustCapacity();
             elements[size] = element;
             size++;
             isEmpty = false;
     }
 
     public void addManyElements(int[] newSet) {
+        adjustCapacity();
       for(int element : newSet){
           addElement(element);
       }
@@ -63,5 +65,15 @@ public class SetBehavior {
                     return;
                 }
             }
+    }
+
+    private void adjustCapacity() {
+        if (size >= elements.length) {
+            int[] newList = new int[elements.length * 2];
+            for (int count = 0; count < elements.length; count++) {
+                newList[count] = elements[count];
+            }
+            elements = newList;
+        }
     }
 }
