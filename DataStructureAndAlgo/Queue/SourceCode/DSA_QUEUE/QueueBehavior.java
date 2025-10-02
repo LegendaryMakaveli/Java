@@ -1,57 +1,69 @@
 package DSA_QUEUE;
 
-import java.util.Arrays;
-
 public class QueueBehavior {
-    int addCount = 0;
-    int removeCount = 0;
-    int count = 0;
-    private Object[] queue;
+    private final Object[] queue;
+    private int front;
+    private int rear;
+    private int size;
 
-    public QueueBehavior(int queueSize){
-        this.queue = new Object[queueSize];
+    public QueueBehavior(int capacity) {
+        this.queue = new Object[capacity];
+        this.front = 0;
+        this.rear = 0;
+        this.size = 0;
     }
-    public boolean add(Object object){
-        if (addCount == queue.length) return false;
-        if (removeCount > 0 && count == queue.length) shift();
-        this.queue[addCount++] = object;
-        count++;
+
+    public boolean add(Object element) {
+        if (isFull()) {
+            return false;
+        }
+        queue[rear] = element;
+        rear = rear + 1;
+        if (rear == queue.length) rear = 0;
+        size++;
         return true;
     }
 
-    public String toString(){
-        Object[] temp = new Object[addCount];
-        System.arraycopy(queue,removeCount,temp,0, addCount);
-        return Arrays.toString(temp);
-    }
-
-    public Object remove(){
-        Object removed = queue[removeCount];
-        queue[removeCount++] = null;
-        addCount--;
-        return removed;
-    }
-    private void shift(){
-        Object [] newArray = new Object[queue.length];
-        System.arraycopy(queue,removeCount,newArray,0,addCount);
-        System.arraycopy(newArray,0,queue,0,queue.length);
-        removeCount = 0;
-    }
-
-    public Object element(){
-        return queue[removeCount];
-    }
-    public Object peek(){
-        if (addCount == 0) return null;
-        else return queue[removeCount];
-    }
-
-    public Object poll(){
-        if (addCount == 0) return null;
-        Object removed = queue[removeCount];
-        queue[removeCount++] = null;
-        addCount--;
+    public Object remove() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
+        }
+        Object removed = queue[front];
+        queue[front] = null;
+        front = front + 1;
+        if (front == queue.length) front = 0;
+        size--;
         return removed;
     }
 
+    public Object peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Queue is empty");
+        }
+        return queue[front];
+    }
+
+    public Object poll() {
+        if (isEmpty()) return null;
+
+        Object removed = queue[front];
+        queue[front] = null;
+        front = front + 1;
+        if (front == queue.length) front = 0;
+        size--;
+        return removed;
+    }
+
+
+    public boolean isFull() {
+        return size == queue.length;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int size() {
+        return size;
+    }
 }
