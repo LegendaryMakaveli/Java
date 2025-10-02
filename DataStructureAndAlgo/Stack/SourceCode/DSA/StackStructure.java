@@ -1,23 +1,45 @@
 package DSA;
 
 public class StackStructure {
-    public int count = 0;
-    public boolean isEmpty = true;
+    private final int[] stack;
+    private int top;
+
+    public StackStructure(int capacity) {
+        this.stack = new int[capacity];
+        this.top = -1;
+    }
 
     public boolean isEmpty() {
-        if(count > 0){
-            isEmpty = false;
-        } else {
-            isEmpty = true;
+        return top == -1;
+    }
+
+    public boolean isFull() {
+        return top == stack.length - 1;
+    }
+
+    public void pushElement(int newElement) {
+        if (isFull()) {
+            throw new IllegalStateException("Stack is full");
         }
-        return isEmpty;
+        stack[++top] = newElement;
     }
 
-    public void pushElement(int newElemeent) {
-        count++;
+    public int popElement() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        return stack[top--];
     }
 
-    public void popElement() {
-        count--;
+    public int peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        return stack[top];
+    }
+
+    public int size() {
+        return top + 1;
     }
 }
+
