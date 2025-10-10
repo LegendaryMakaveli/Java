@@ -1,11 +1,14 @@
-public class calculateOutPut{
+public class CalculateOutPut {
 
     public int [] sumOfTwo(int [] array){
         int EXPECTED = 8;
-        int [] newArray = new int[array.length];
+        int [] newArray = new int[2];
         for(int count = 0; count < array.length; count++){
-            if(array[count] + array[count+1] == EXPECTED){
-                newArray[count] = array[count];
+            for(int counter = 0; counter < array.length-1; counter++){
+                if (array[count] + array[counter] == EXPECTED) {
+                    newArray[count] = array[count];
+                    break;
+                }
             }
         }
         return newArray;
