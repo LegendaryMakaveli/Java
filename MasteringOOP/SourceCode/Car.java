@@ -32,6 +32,10 @@ public class Car {
         return year;
     }
 
+    public String startEngine(){
+       return "CAR: Engine started";
+    }
+
     public static String displayCarInfo(Car newCar){
         return "CAR INFO: " + newCar.getBrand() + " " + newCar.getModel() + " " + newCar.getYear();
     }

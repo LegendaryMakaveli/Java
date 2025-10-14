@@ -3,11 +3,12 @@ public class Person {
     private int age;
 
     public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
+        setName(name);
+        setAge(age);
     }
 
     public void setName(String name){
+        if(name == null || name.trim().isEmpty()) throw new IllegalArgumentException("Name cannot be empty");
         this.name = name;
     }
 
