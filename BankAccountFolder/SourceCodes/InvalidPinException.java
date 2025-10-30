@@ -1,4 +1,4 @@
-public class InvalidPinException extends RuntimeException {
+public class InvalidPinException extends BankException{
     public InvalidPinException(String message) {
         super(message);
     }
