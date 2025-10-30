@@ -1,5 +1,5 @@
-public class InsuffiecientBalanceException extends RuntimeException {
-  public InsuffiecientBalanceException(String message) {
-    super(message);
-  }
+public class InsuffiecientBalanceException extends BankException{
+    public InsuffiecientBalanceException(String message) {
+        super(message);
+    }
 }
