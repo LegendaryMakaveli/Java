@@ -1,5 +1,5 @@
-public class ThiefException extends RuntimeException {
-  public ThiefException(String message) {
-    super(message);
-  }
+public class ThiefException extends BankException{
+    public ThiefException(String message) {
+        super(message);
+    }
 }
