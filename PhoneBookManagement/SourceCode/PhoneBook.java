@@ -4,6 +4,7 @@ import java.util.List;
 
 public class PhoneBook {
     private List<Contact> contactList;
+    private String ownerName;
 
     public PhoneBook(){
         contactList = new ArrayList<>();
@@ -87,6 +88,14 @@ public class PhoneBook {
             throw new PhoneBookException("Error reading phonebook");
         }
         throw new NotFoundException("Profile not found!");
+    }
+
+    public void setOwnerName(String ownerName){
+        if(ownerName == null || ownerName.trim().isEmpty())throw new EmptyNameException("Name cannot be empty");
+        this.ownerName = ownerName.trim();
+    }
+    public String getOwnerName(){
+        return ownerName;
     }
 
 
