@@ -86,4 +86,26 @@ public class TestPhonebook {
         assertThrows(NotFoundException.class,
                 () -> phoneBook.findProfileByPhoneNumber("00000000000"));
     }
+
+    @Test
+    public void testSetOwnerNameStoresValidName() {
+        phoneBook.setOwnerName("Emmanuel");
+        assertEquals("Emmanuel", phoneBook.getOwnerName());
+    }
+
+    @Test
+    public void testSetOwnerNameTrimsWhitespace() {
+        phoneBook.setOwnerName("   Mary   ");
+        assertEquals("Mary", phoneBook.getOwnerName());
+    }
+
+    @Test
+    public void testSetOwnerNameThrowsForNull() {
+        assertThrows(EmptyNameException.class, () -> phoneBook.setOwnerName(null));
+    }
+
+    @Test
+    public void testSetOwnerNameThrowsForEmptyString() {
+        assertThrows(EmptyNameException.class, () -> phoneBook.setOwnerName("  "));
+    }
 }
