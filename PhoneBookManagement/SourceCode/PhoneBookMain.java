@@ -1,30 +1,36 @@
-import java.util.Scanner;
+import javax.swing.*;
 
 public class PhoneBookMain {
-    private static final Scanner input = new Scanner(System.in);
-    private static final Phonebooks phonebooks = new Phonebooks();
+    private static Phonebooks phonebooks = new Phonebooks();
 
-    public static void main(String[] args) {
+    private static void print(String prompt) {
+        JOptionPane.showMessageDialog(null, prompt);
+    }
+
+    private static String collectInput(String prompt) {
+        return JOptionPane.showInputDialog(null, prompt);
+    }
+
+    static void main(String[] args) {
         boolean running = true;
-        System.out.println("Welcome to the Makaveli PhoneBook System!");
-
+        PhoneBookMain.print("Welcome to the Makaveli PhoneBook System!");
         while (running) {
-            System.out.println("\n====== MAIN MENU ======");
-            System.out.println("1. Create New PhoneBook");
-            System.out.println("2. Open Existing PhoneBook");
-            System.out.println("3. View All PhoneBooks");
-            System.out.println("4. Delete PhoneBook");
-            System.out.println("5. Exit");
-            System.out.print("Choose an option: ");
-            String choice = input.nextLine();
-
+            String choice = collectInput("""
+                    ====== MAIN MENU ======
+                    1. Create New PhoneBook
+                    2. Open Existing PhoneBook
+                    3. View All PhoneBooks
+                    4. Delete PhoneBook
+                    5. Exit
+                    Choose an option:
+                    """);
             switch (choice) {
                 case "1" -> createPhoneBook();
                 case "2" -> openPhoneBook();
                 case "3" -> viewAllPhoneBooks();
                 case "4" -> deletePhoneBook();
                 case "5" -> {
-                    System.out.println("Exiting system... Goodbye!");
+                    print("Exiting system... Goodbye!");
                     running = false;
                 }
                 default -> System.out.println("Invalid choice. Try again.");
@@ -33,41 +39,38 @@ public class PhoneBookMain {
     }
 
     private static void createPhoneBook() {
-        System.out.print("Enter owner name for new PhoneBook: ");
-        String owner = input.nextLine();
-
+        String owner = PhoneBookMain.collectInput("Enter owner name for new PhoneBook:  ");
         try {
-            phonebooks.addPhoneBook(owner);
-            System.out.println("PhoneBook for '" + owner + "' created successfully!");
+            PhoneBookMain.phonebooks.addPhoneBook(owner);
+            PhoneBookMain.print("PhoneBook for '" + owner + "' created successfully!");
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            PhoneBookMain.print(e.getMessage());
         }
     }
 
     private static void openPhoneBook() {
-        System.out.print("Enter owner name of PhoneBook to open: ");
-        String owner = input.nextLine();
+        String owner = PhoneBookMain.collectInput("Enter owner name of PhoneBook to open:  ");
 
-        PhoneBook selected = phonebooks.findPhoneBookByName(owner);
+        PhoneBook selected = PhoneBookMain.phonebooks.findPhoneBookByName(owner);
         if (selected == null) {
-            System.out.println("PhoneBook not found!");
+            PhoneBookMain.print("PhoneBook not found!");
             return;
         }
 
-        System.out.println("Opened PhoneBook of " + owner);
+        PhoneBookMain.print("Opened PhoneBook of " + owner);
         boolean inPhoneBook = true;
 
         while (inPhoneBook) {
-            System.out.println("\n====== " + owner.toUpperCase() + "'s PHONEBOOK ======");
-            System.out.println("1. Add Contact");
-            System.out.println("2. View All Contacts");
-            System.out.println("3. Find Contact by Full Name");
-            System.out.println("4. Find Profile by Phone Number");
-            System.out.println("5. Delete Contact");
-            System.out.println("6. Back to Main Menu");
-            System.out.print("Choose an option: ");
-            String choice = input.nextLine();
-
+            String choice = PhoneBookMain.collectInput("""
+                    ======" + owner.toUpperCase() + PHONEBOOK ======
+                    1. Add Contact
+                    2. View All Contacts
+                    3. Find Contact by Full Name
+                    4. Find Profile by Phone Number
+                    5. Delete Contact
+                    6. Back to Main Menu
+                    Choose an option:
+                    """);
             switch (choice) {
                 case "1" -> addContact(selected);
                 case "2" -> viewAllContacts(selected);
@@ -81,86 +84,77 @@ public class PhoneBookMain {
     }
 
     private static void viewAllPhoneBooks() {
-        if (phonebooks.getPhoneBookList().isEmpty()) {
+        if (PhoneBookMain.phonebooks.getPhoneBookList().isEmpty()) {
             System.out.println("No phonebooks created yet.");
             return;
         }
 
-        System.out.println("\nAll PhoneBooks:");
-        for (PhoneBook phoneBook : phonebooks.getPhoneBookList()) {
-            System.out.println("-> " + phoneBook.getOwnerName());
+        PhoneBookMain.print("\nAll PhoneBooks:");
+        for (PhoneBook phoneBook : PhoneBookMain.phonebooks.getPhoneBookList()) {
+            PhoneBookMain.print("-> " + phoneBook.getOwnerName());
         }
     }
 
     private static void deletePhoneBook() {
-        System.out.print("Enter owner name of PhoneBook to delete: ");
-        String owner = input.nextLine();
-
+        String owner = PhoneBookMain.collectInput("Enter owner name of PhoneBook to delete:  ");
         try {
-            phonebooks.deletePhoneBook(owner);
-            System.out.println("PhoneBook for '" + owner + "' deleted successfully!");
+            PhoneBookMain.phonebooks.deletePhoneBook(owner);
+            PhoneBookMain.print("PhoneBook for '" + owner + "' deleted successfully!");
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            PhoneBookMain.print(e.getMessage());
         }
     }
 
     private static void addContact(PhoneBook phoneBook) {
-        System.out.print("Enter first name: ");
-        String firstName = input.nextLine();
-        System.out.print("Enter last name: ");
-        String lastName = input.nextLine();
-        System.out.print("Enter phone number: ");
-        String phoneNumber = input.nextLine();
-
+        String firstName = PhoneBookMain.collectInput("Enter first name:  ");
+        String lastName = PhoneBookMain.collectInput("Enter last name:  ");
+        String phoneNumber = PhoneBookMain.collectInput("Enter phoneNumber:  ");
         try {
             phoneBook.addContact(firstName, lastName, phoneNumber);
-            System.out.println("Contact added successfully!");
+            PhoneBookMain.print("Contact added successfully!");
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            PhoneBookMain.print(e.getMessage());
         }
     }
 
     private static void viewAllContacts(PhoneBook phoneBook) {
-        System.out.println("\nAll Contacts:");
+        PhoneBookMain.print("\nAll Contacts:");
         if (phoneBook.getContactList().isEmpty()) {
-            System.out.println("No contacts saved yet.");
+            PhoneBookMain.print("No contacts saved yet.");
             return;
         }
         for (Contact contact : phoneBook.getContactList()) {
-            System.out.println("-> " + contact.getFullName() + " (" + contact.getPhoneNumber() + ")");
+            PhoneBookMain.print("-> " + contact.getFullName() + " (" + contact.getPhoneNumber() + ")");
         }
     }
 
     private static void findContactByFullName(PhoneBook phoneBook) {
-        System.out.print("Enter full name: ");
-        String name = input.nextLine();
+        String name = PhoneBookMain.collectInput("Enter full name: ");
         try {
             String phone = phoneBook.findContactByFullName(name);
-            System.out.println(name + "'s number: " + phone);
+            PhoneBookMain.print(name + "'s number: " + phone);
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            PhoneBookMain.print(e.getMessage());
         }
     }
 
     private static void findProfileByPhoneNumber(PhoneBook phoneBook) {
-        System.out.print("Enter phone number: ");
-        String number = input.nextLine();
+        String number = PhoneBookMain.collectInput("Enter phone number: ");
         try {
             String name = phoneBook.findProfileByPhoneNumber(number);
-            System.out.println("Owner of " + number + ": " + name);
+            PhoneBookMain.print("Owner of " + number + ": " + name);
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            PhoneBookMain.print(e.getMessage());
         }
     }
 
     private static void deleteContact(PhoneBook phoneBook) {
-        System.out.print("Enter full name of contact to delete: ");
-        String name = input.nextLine();
+        String name = PhoneBookMain.collectInput("Enter full name of contact to delete:  ");
         try {
             phoneBook.deleteContact(name);
-            System.out.println("Contact deleted successfully!");
+            PhoneBookMain.print("Contact deleted successfully!");
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            PhoneBookMain.print(e.getMessage());
         }
     }
 }
