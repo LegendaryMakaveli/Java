@@ -172,7 +172,7 @@ public class PhoneBook {
 
     private void saveContactToFile(Contact contact) {
         try (FileWriter writer = new FileWriter("PhoneBookContacts.txt", true)) {
-            writer.write(contact.getFirstName() + " " + contact.getLastName() + " " + contact.getPhoneNumber());
+            writer.write(contact.getFirstName() + " " + contact.getLastName() + " " + contact.getPhoneNumber() + "\n");
         } catch (IOException error) {
             throw new PhoneBookException("Error saving contact to phonebook");
         }
